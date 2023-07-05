@@ -1,85 +1,81 @@
-// let movies = [
-//     {
-//         name:"falcon and the winter soldier",
-//         des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
-//         image:"images/slider 2.png"
-//     },
-//     {
-//         name:"Loki",
-//         des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
-//         image: "images\slider 1.png"
-//     },
-//     {
-//         name:"wnada vision",
-//         des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
-//         image: "images/slider 3.png"
-//     },
-//     {
-//         name:"raya and the last dragon",
-//         des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
-//         image: "images/slider 4.png"
-//     },
-//     {
-//         name:"luca",
-//         des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
-//         image: "images/slider 5.png"
-//     },
-// ];
+const carousel = document.querySelector('.carousel');
+const movies = [
+    {
+        name: "Falcon and the Winter Soldier",
+        des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
+        image: "images/slider 1.png"
+    },
+    {
+        name: "Loki",
+        des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
+        image: "images/slider 2.png"
+    },
+    {
+        name: "WandaVision",
+        des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
+        image: "images/slider 3.png"
+    },
+    {
+        name: "Raya and the Last Dragon",
+        des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
+        image: "images/slider 4.png"
+    },
+    {
+        name: "Luca",
+        des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet similique provident exercitationem quae aperiam nulla ipsum quibusdam dolore tempora. Sunt, modi commodi expedita tenetur ",
+        image: "images/slider 5.png"
+    }
+];
 
-// const carousel=document.querySelector('.carousel');
-// let sliders=[];
+let sliders = [];
+let slideIndex = 0; // track the current slide
 
-// let slideIndex=0;//track the current slide
+const createSlide = () => {
+    if (slideIndex >= movies.length) {
+        slideIndex = 0;
+    }
+    // create DOM elements
+    let slide = document.createElement('div');
+    let imgElement = document.createElement('img');
+    let content = document.createElement('div');
+    let h1 = document.createElement('h1');
+    let p = document.createElement('p');
 
-// const createSlide = () =>{
-//     if(slideIndex>=movies.length){
-//         slideIndex=0;
-//     }
-//     //create DOM Element
-//     let slide=document.createElement('div');
-//     let imgElement=document.createElement('img');
-//     let content=document.createElement('div');
-//     let h1=document.createElement('h1');
-//     let p=document.createElement('p');
+    // attaching all elements
+    h1.appendChild(document.createTextNode(movies[slideIndex].name));
+    p.appendChild(document.createTextNode(movies[slideIndex].des));
+    content.appendChild(h1);
+    content.appendChild(p);
+    slide.appendChild(imgElement);
+    slide.appendChild(content);
+    carousel.appendChild(slide);
 
-//     //attaching all element
-//     imgElement.appendChild(document.createTextNode(''));
-//     h1.appendChild(document.createTextNode(movies[slideIndex].name));
-//     p.appendChild(document.createTextNode(movies[slideIndex].des));
-//     content.appendChild(h1);
-//     content.appendChild(p);
-//     slide.appendChild(imgElement);
-//     carousel.appendChild(slide);
+    // setting up images
+    imgElement.src = movies[slideIndex].image;
+    slideIndex++;
 
-//     //setting up images
-//     imgElement.src=movies[slideIndex].image;
-//     slideIndex++
+    // setting element class names
+    slide.className = "slider";
+    content.className = "slide-content";
+    h1.className = "movie-title";
+    p.className = "movie-des";
 
-//     //setting element classname
-//     slide.className = "slider";
-//     content.className = "slide-content";
-//     h1.className = "movie-title";
-//     p.className = "movie-des";
+    sliders.push(slide);
 
-//     sliders.push(slide);
-    
-//     if(slide.length)
-//     {
-//         sliders[0].style.marginLeft = `calc(-${100 * (sliders.length - 2)}% - ${
-//             30 * (sliders.length - 2)
-//         }px)`;
-//     }
-// }
+    if (sliders.length > 2) {
+        sliders[0].style.marginLeft = `calc(-${100 * (sliders.length - 2)}% - ${30 * (sliders.length - 2)}px)`;
+    }
+}
 
-// for (let i=0; i<3; i++){
-//     createSlide();
-// }
+for (let i = 0; i < 3; i++) {
+    createSlide();
+}
 
-// setInterval(()=>{
-//     createSlide();
-// }, 3000);
+setInterval(() => {
+    createSlide();
+}, 3000);
 
-//Video Cards 
+// Video Cards 
 
 const videoCards= [...document.querySelectorAll('.video-card')];
 
